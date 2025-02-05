@@ -69,6 +69,11 @@ export class NavbarComponent implements OnInit {
       icon: ''
     },
     {
+      label: 'Education',
+      fragment: 'education',
+      icon: ''
+    },
+    {
       label: 'Experience',
       fragment: 'experience',
       icon: ''
