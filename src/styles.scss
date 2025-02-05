@@ -1,1 +1,93 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Add smooth transitions for theme switching
+* {
+  transition-property: color, background-color, border-color;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+}
+
+/* Base Animations */
+.animate-fade-in {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.animate-fade-in.animate {
+  animation: fadeIn 0.8s ease-out forwards;
+  visibility: visible;
+}
+
+.animate-fade-in-up {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.animate-fade-in-up.animate {
+  animation: fadeInUp 0.8s ease-out forwards;
+  visibility: visible;
+}
+
+.animate-slide-in {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.animate-slide-in.animate {
+  animation: slideIn 0.8s ease-out forwards;
+  visibility: visible;
+}
+
+.animate-scale-in {
+  transform: scaleX(0);
+  visibility: hidden;
+}
+
+.animate-scale-in.animate {
+  animation: scaleIn 0.8s ease-out forwards;
+  visibility: visible;
+}
+
+/* Keyframes remain the same */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}

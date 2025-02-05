@@ -1,0 +1,81 @@
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+@import 'swiper/css/effect-fade';
+
+:host {
+  display: block;
+}
+
+swiper-container {
+  width: 100%;
+  padding: 1rem 0 2rem;
+
+  @media (min-width: 768px) {
+    padding: 2rem 0;
+  }
+}
+
+swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  width: auto;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: theme('colors.gray.800');
+  background: theme('colors.white');
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  @media (prefers-color-scheme: dark) {
+    color: theme('colors.gray.100');
+    background: theme('colors.gray.800');
+  }
+
+  &:after {
+    font-size: 0.875rem !important;
+    font-weight: bold;
+
+    @media (min-width: 768px) {
+      font-size: 1.125rem !important;
+    }
+  }
+}
+
+.swiper-pagination {
+  position: relative;
+  margin-top: 1rem;
+
+  @media (min-width: 768px) {
+    margin-top: 2rem;
+  }
+
+  &-bullet {
+    background: theme('colors.gray.400');
+    width: 6px;
+    height: 6px;
+    margin: 0 3px !important;
+
+    @media (min-width: 768px) {
+      width: 8px;
+      height: 8px;
+      margin: 0 4px !important;
+    }
+
+    &-active {
+      background: theme('colors.gray.800');
+
+      @media (prefers-color-scheme: dark) {
+        background: theme('colors.gray.100');
+      }
+    }
+  }
+}
+
+// Fix for slide sizing
+::ng-deep swiper-slide {
+  height: auto !important;
+}

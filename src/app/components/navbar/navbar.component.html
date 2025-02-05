@@ -1,0 +1,118 @@
+<header
+  class="fixed top-0 w-full z-50 backdrop-blur-lg bg-white/80 dark:bg-neutral-900/80 border-b border-neutral-200 dark:border-neutral-800"
+>
+  <!-- Desktop Navigation -->
+  <div class="hidden md:block container mx-auto">
+    <div class="flex items-center justify-between h-20 px-4">
+      <!-- Logo -->
+      <a
+        class="text-2xl font-semibold text-primary-500 hover:text-primary-600 transition-colors"
+      >
+        <span class="text-neutral-900 dark:text-white">&lt;</span>
+        Snehith Padigelwar
+        <span class="text-neutral-900 dark:text-white">/&gt;</span>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="flex items-center gap-8">
+        @for (item of navbarItems; track $index) {
+        <a
+          class="relative py-2 text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors cursor-pointer group"
+          [class]="
+            isActive(item.fragment)
+              ? 'text-primary-500 dark:text-primary-400'
+              : ''
+          "
+          (click)="scrollToSection(item.fragment)"
+        >
+          {{ item.label }}
+          <!-- Animated Underline -->
+          <span
+            class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-500 dark:bg-primary-400 group-hover:w-full transition-all duration-300"
+            [class.w-full]="isActive(item.fragment)"
+          ></span>
+        </a>
+        }
+
+        <!-- Theme Toggle -->
+        <button
+          (click)="toggleTheme()"
+          class="p-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors"
+          aria-label="Toggle theme"
+        >
+          <span
+            class="material-symbols-outlined text-xl text-neutral-600 dark:text-neutral-300"
+          >
+            {{ isDarkTheme ? "dark_mode" : "light_mode" }}
+          </span>
+        </button>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div class="md:hidden px-4">
+    <div class="flex items-center justify-between h-16">
+      <!-- Mobile Logo -->
+      <a class="text-xl font-semibold text-primary-500">
+        <span class="text-neutral-900 dark:text-white">&lt;</span>
+        SP
+        <span class="text-neutral-900 dark:text-white">/&gt;</span>
+      </a>
+
+      <!-- Mobile Controls -->
+      <div class="flex items-center gap-2">
+        <!-- Theme Toggle -->
+        <button
+          (click)="toggleTheme()"
+          class="p-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors"
+          aria-label="Toggle theme"
+        >
+          <span
+            class="material-symbols-outlined text-lg text-neutral-600 dark:text-neutral-300"
+          >
+            {{ isDarkTheme ? "dark_mode" : "light_mode" }}
+          </span>
+        </button>
+
+        <!-- Menu Toggle -->
+        <button
+          (click)="toggleMobileMenu()"
+          class="p-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors"
+          aria-label="Toggle menu"
+        >
+          <span
+            class="material-symbols-outlined text-lg text-neutral-600 dark:text-neutral-300"
+          >
+            {{ isMobileMenuOpen ? "close" : "menu" }}
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div
+  class="fixed md:hidden w-full bg-white dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800 shadow-lg transition-all duration-300 ease-in-out z-40"
+  [class]="isMobileMenuOpen ? 'top-16' : '-top-full'"
+>
+  <nav class="container mx-auto py-4">
+    @for (item of navbarItems; track $index) {
+    <a
+      class="flex items-center px-4 py-3 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
+      [class]="
+        isActive(item.fragment)
+          ? 'text-primary-500 dark:text-primary-400 bg-neutral-50 dark:bg-neutral-800'
+          : ''
+      "
+      (click)="scrollToSection(item.fragment); toggleMobileMenu()"
+    >
+      {{ item.label }}
+    </a>
+    }
+  </nav>
+</div>
+
+<!-- Spacer to prevent content from hiding under fixed navbar -->
+<div class="h-16 md:h-20"></div>
